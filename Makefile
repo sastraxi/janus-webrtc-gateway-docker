@@ -1,4 +1,4 @@
-TEMPLATE_NAME ?= janus-webrtc-gateway-docker
+TEMPLATE_NAME ?= janus-webrtc-gateway-docker:0.9.2
 
 build:
 	@docker build -t sastraxi/$(TEMPLATE_NAME) .
