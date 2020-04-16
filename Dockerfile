@@ -3,7 +3,7 @@ FROM buildpack-deps:stretch
 RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 
 RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
+RUN apt-get -y update && apt-get install -y \
     libjansson-dev \
     libnice-dev \
     libssl-dev \
@@ -27,7 +27,13 @@ RUN apt-get -y update && apt-get install -y libmicrohttpd-dev \
     zip \
     lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate gstreamer1.0-tools mplayer valgrind certbot python-certbot-apache
 
-
+RUN MICROHTTPD="0.9.70" && \
+    wget https://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-$MICROHTTPD.tar.gz && \
+    tar xzvf libmicrohttpd-$MICROHTTPD.tar.gz && \
+    cd libmicrohttpd-$MICROHTTPD && \
+    ./configure --prefix=/usr && \
+    make && \
+    make install
 
 # FFmpeg build section
 RUN mkdir ~/ffmpeg_sources
