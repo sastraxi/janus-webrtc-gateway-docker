@@ -27,6 +27,8 @@ RUN apt-get -y update && apt-get install -y \
     zip \
     lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate gstreamer1.0-tools mplayer valgrind certbot python-certbot-apache
 
+RUN apt-get install -y libgnutls28-dev
+
 RUN MICROHTTPD="0.9.70" && \
     wget https://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-$MICROHTTPD.tar.gz && \
     tar xzvf libmicrohttpd-$MICROHTTPD.tar.gz && \
